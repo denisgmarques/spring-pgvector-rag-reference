@@ -1,0 +1,3 @@
+Hello RAG World from the Helpdesk sample document.
+
+This is a second paragraph used to validate text extraction.
