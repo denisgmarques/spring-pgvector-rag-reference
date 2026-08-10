@@ -1,0 +1,22 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+
+  thymeleaf:
+    cache: false
+
+  # Placeholder only — the test suite never uses the real OpenAiEmbeddingAdapter
+  # (FakeEmbeddingAdapter is wired instead), so no real key/network is required.
+  ai:
+    openai:
+      api-key: sk-placeholder-not-a-real-key
+
+logging:
+  level:
+    com.helpdesk.rag: INFO

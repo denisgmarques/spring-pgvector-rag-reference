@@ -1,0 +1,55 @@
+spring:
+  application:
+    name: helpdesk-rag
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/helpdesk_rag
+    username: helpdesk
+    password: helpdesk
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: UTC
+
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+
+  thymeleaf:
+    cache: false
+
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+  # Spring AI never contacts the network at context-startup time (the API key is only
+  # used lazily, on the first embedding call), so a placeholder here keeps the context
+  # loadable without OPENAI_API_KEY set (RNF-04/RNF-08 smoke test in T01).
+  ai:
+    openai:
+      api-key: ${OPENAI_API_KEY:sk-placeholder-not-a-real-key}
+      embedding:
+        options:
+          model: text-embedding-3-small
+
+app:
+  # RNF-08: Spring Security is intentionally NOT implemented in this reference case.
+  # Authentication/authorization is explicitly out of scope — do not mistake this for an omission.
+  security-note: "Authentication/authorization (Spring Security) is intentionally out of scope for this reference architecture."
+  document:
+    max-file-size-bytes: 10485760
+    allowed-extensions: pdf,txt
+    chunk:
+      fixed-size: 1000
+      overlap: 200
+    list-batch-size: 20
+
+logging:
+  level:
+    com.helpdesk.rag: INFO

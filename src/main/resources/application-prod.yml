@@ -1,0 +1,26 @@
+spring:
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/helpdesk_rag}
+    username: ${DB_USERNAME:helpdesk}
+    password: ${DB_PASSWORD:helpdesk}
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+
+  thymeleaf:
+    cache: true
+
+  ai:
+    openai:
+      # Real embedding calls require a valid OPENAI_API_KEY to be set in the environment.
+      api-key: ${OPENAI_API_KEY}
+      embedding:
+        options:
+          model: text-embedding-3-small
+
+logging:
+  level:
+    com.helpdesk.rag: INFO
+    org.hibernate.SQL: WARN
