@@ -64,7 +64,7 @@ public class DocumentEventListener {
                 .orElseThrow(() -> new NoSuchElementException("Document not found: " + documentId));
 
         document.markProcessing();
-        documentRepositoryPort.save(document);
+        document = documentRepositoryPort.save(document);
 
         if (deleteExistingChunksFirst) {
             documentRepositoryPort.deleteChunksByDocumentId(documentId);

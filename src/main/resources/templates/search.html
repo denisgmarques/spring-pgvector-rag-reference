@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Busca Semântica')}"></head>
+<body>
+<nav th:replace="~{fragments/layout :: nav}"></nav>
+<div class="container">
+    <h1 class="mb-4">Busca Semântica</h1>
+
+    <form id="search-form" class="mb-4">
+        <div class="input-group">
+            <input type="text" id="question" name="question" class="form-control"
+                   placeholder="Faça uma pergunta..." required="required"/>
+            <button type="submit" class="btn btn-primary" id="search-submit">Buscar</button>
+        </div>
+    </form>
+
+    <div id="search-feedback" class="alert d-none" role="alert"></div>
+    <div id="search-results" class="row g-3"></div>
+</div>
+
+<!-- Result card template cloned by search.js per SearchResultResponse (documentName,
+     chunkText excerpt, score as a percentage), ordered as returned by the API (UI-03). -->
+<template id="search-result-template">
+    <div class="col-md-6">
+        <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title result-document-name"></h5>
+                <h6 class="card-subtitle mb-2 text-muted">
+                    <span class="result-score"></span>% de relevância
+                </h6>
+                <p class="card-text result-chunk-text"></p>
+            </div>
+        </div>
+    </div>
+</template>
+
+<div th:replace="~{fragments/layout :: scripts}"></div>
+<script src="/js/search.js"></script>
+</body>
+</html>

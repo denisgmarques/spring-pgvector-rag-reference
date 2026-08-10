@@ -1,6 +1,7 @@
 package com.helpdesk.rag.support;
 
 import com.helpdesk.rag.infrastructure.config.TestEmbeddingConfig;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.ActiveProfiles;
@@ -19,6 +20,7 @@ import org.testcontainers.utility.DockerImageName;
  * adapter, so no network access or {@code OPENAI_API_KEY} is required.
  */
 @SpringBootTest
+@AutoConfigureMockMvc
 @ActiveProfiles("test")
 @Import(TestEmbeddingConfig.class)
 public abstract class AbstractIntegrationTest {

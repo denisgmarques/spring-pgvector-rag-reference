@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Upload')}"></head>
+<body>
+<nav th:replace="~{fragments/layout :: nav}"></nav>
+<div class="container">
+    <h1 class="mb-4">Upload de Documento</h1>
+
+    <div id="upload-feedback" class="alert d-none" role="alert"></div>
+
+    <form id="upload-form" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label for="file" class="form-label">Arquivo (PDF ou TXT, até 10MB)</label>
+            <input class="form-control" type="file" id="file" name="file" accept=".pdf,.txt" required="required"/>
+        </div>
+        <button type="submit" class="btn btn-primary" id="upload-submit">Enviar</button>
+    </form>
+</div>
+<div th:replace="~{fragments/layout :: scripts}"></div>
+<script src="/js/upload.js"></script>
+</body>
+</html>

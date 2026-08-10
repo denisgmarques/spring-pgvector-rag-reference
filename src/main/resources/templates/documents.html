@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Documentos')}"></head>
+<body>
+<nav th:replace="~{fragments/layout :: nav}"></nav>
+<div class="container">
+    <h1 class="mb-4">Documentos</h1>
+
+    <div id="documents-feedback" class="alert d-none" role="alert"></div>
+
+    <table class="table align-middle">
+        <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Status</th>
+            <th>Enviado em</th>
+            <th>Ações</th>
+        </tr>
+        </thead>
+        <tbody id="documents-tbody"></tbody>
+    </table>
+
+    <div id="documents-loading" class="text-center text-muted py-3 d-none">Carregando...</div>
+    <div id="documents-empty" class="text-center text-muted py-3 d-none">Nenhum documento encontrado.</div>
+</div>
+
+<!-- Row template cloned by documents.js for each loaded document; the badge class/text
+     is set dynamically from Document.status (PENDING=secondary, PROCESSING=info,
+     PROCESSED=success, ERROR=danger) since document data loads via AJAX (UI-02). -->
+<template id="document-row-template">
+    <tr>
+        <td class="doc-file-name"></td>
+        <td><span class="badge doc-status-badge"></span></td>
+        <td class="doc-uploaded-at"></td>
+        <td>
+            <input type="file" class="doc-edit-input d-none" accept=".pdf,.txt"/>
+            <button type="button" class="btn btn-sm btn-outline-primary doc-edit-btn">Editar</button>
+            <button type="button" class="btn btn-sm btn-outline-danger doc-delete-btn">Excluir</button>
+        </td>
+    </tr>
+</template>
+
+<div th:replace="~{fragments/layout :: scripts}"></div>
+<script src="/js/documents.js"></script>
+</body>
+</html>
