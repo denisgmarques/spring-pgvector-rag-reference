@@ -52,6 +52,7 @@ public class UpdateDocumentUseCaseImpl implements UpdateDocumentUseCase {
 
         eventPublisher.publishEvent(new DocumentUpdatedEvent(saved.getId(), Instant.now()));
 
-        return new UpdateDocumentResult(saved.getId(), saved.getStatus());
+        return new UpdateDocumentResult(saved.getId(), saved.getFileName(), saved.getStatus(), saved.getErrorMessage(),
+                saved.getUploadedAt(), saved.getUpdatedAt(), saved.getVersion());
     }
 }

@@ -46,6 +46,10 @@ class UploadDocumentUseCaseImplTest {
 
         assertThat(result.status()).isEqualTo(DocumentStatus.PENDING);
         assertThat(result.documentId()).isNotNull();
+        assertThat(result.fileName()).isEqualTo("notes.txt");
+        assertThat(result.uploadedAt()).isNotNull();
+        assertThat(result.version()).isEqualTo(0L);
+        assertThat(result.errorMessage()).isNull();
 
         ArgumentCaptor<Document> documentCaptor = ArgumentCaptor.forClass(Document.class);
         verify(documentRepositoryPort, times(1)).save(documentCaptor.capture());

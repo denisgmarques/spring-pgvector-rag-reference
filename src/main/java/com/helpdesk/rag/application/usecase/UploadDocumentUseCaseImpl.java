@@ -48,6 +48,7 @@ public class UploadDocumentUseCaseImpl implements UploadDocumentUseCase {
 
         eventPublisher.publishEvent(new DocumentUploadedEvent(saved.getId(), Instant.now()));
 
-        return new UploadDocumentResult(saved.getId(), saved.getStatus());
+        return new UploadDocumentResult(saved.getId(), saved.getFileName(), saved.getStatus(), saved.getErrorMessage(),
+                saved.getUploadedAt(), saved.getUpdatedAt(), saved.getVersion());
     }
 }

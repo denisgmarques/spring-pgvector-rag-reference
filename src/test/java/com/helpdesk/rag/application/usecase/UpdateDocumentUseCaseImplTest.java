@@ -66,6 +66,9 @@ class UpdateDocumentUseCaseImplTest {
         UpdateDocumentResult result = useCase.update(command);
 
         assertThat(result.status()).isEqualTo(DocumentStatus.PROCESSING);
+        assertThat(result.fileName()).isEqualTo("new.txt");
+        assertThat(result.uploadedAt()).isNotNull();
+        assertThat(result.updatedAt()).isNotNull();
 
         ArgumentCaptor<Document> captor = ArgumentCaptor.forClass(Document.class);
         verify(documentRepositoryPort, times(1)).save(captor.capture());

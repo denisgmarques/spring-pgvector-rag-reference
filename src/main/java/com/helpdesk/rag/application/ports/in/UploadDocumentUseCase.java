@@ -2,6 +2,7 @@ package com.helpdesk.rag.application.ports.in;
 
 import com.helpdesk.rag.domain.DocumentStatus;
 
+import java.time.Instant;
 import java.util.UUID;
 
 public interface UploadDocumentUseCase {
@@ -11,6 +12,12 @@ public interface UploadDocumentUseCase {
     record UploadDocumentCommand(String fileName, String contentType, long fileSize, byte[] fileData) {
     }
 
-    record UploadDocumentResult(UUID documentId, DocumentStatus status) {
+    record UploadDocumentResult(UUID documentId,
+                                 String fileName,
+                                 DocumentStatus status,
+                                 String errorMessage,
+                                 Instant uploadedAt,
+                                 Instant updatedAt,
+                                 long version) {
     }
 }
